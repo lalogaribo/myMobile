@@ -17,7 +17,7 @@ import AdbIcon from "@mui/icons-material/PhoneAndroid";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const pages = ["Celulares", "Planes", "Blog"];
+const pages = ["Celulares","Planes", "Blog"];
 const settings = ["Perfil", "Mi cuenta", "Cerrar sesion"];
 
 export const NavBar = () => {
@@ -97,6 +97,14 @@ export const NavBar = () => {
             >
               Mymobile
             </Typography>
+            {/* <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/celulares");
+                }}
+              >
+                Celulares
+              </Button> */}
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
