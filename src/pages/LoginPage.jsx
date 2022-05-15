@@ -6,28 +6,23 @@ import { Avatar,
          Checkbox,
          FormControlLabel,
          Button,
-         Typography,
          Link,
-         Alert,
-         Stack } from '@mui/material';
+          } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 
 const onClickButton = () => {
   return(
-    <Stack sx={{ width: '100%' }} spacing={2}>
-        <Alert variant="filled" severity="info">
-            This is an info alert — check it out!
-        </Alert>
-    </Stack>
+    alert("aun no funciona esto!")
   );
 }
 
 export const LoginPage = () => {
-    
+
   const paperStyle = {padding :20, height:"70vh", width:250, margin: "20px auto" };
   const avatarStyle = {backgroundColor:"#1978d2"};
   const textFieldStyle = {margin :"10px 0 0 0"}
-  const linkStyle = {margin: "10px 0 0 0"}
+  const linkStyle = {margin: "15px 0 0 0" }
+  
   return (
       <Grid>
         <Paper elevation={10} style={paperStyle}>
@@ -38,7 +33,8 @@ export const LoginPage = () => {
            <TextField id="correo" 
                       label="Correo" 
                       placeholder="nombre@correo.com" 
-                      variant="outlined" />
+                      variant="outlined"
+                      fullWidth />
 
            <TextField id="password" 
                       label="Pasword" 
@@ -46,9 +42,10 @@ export const LoginPage = () => {
                       variant="outlined"
                       type="password"
                       style={textFieldStyle}
+                      fullWidth
                        />
           
-            <FormControlLabel control={<Checkbox defaultChecked size="10px"/>} 
+            <FormControlLabel control={<Checkbox defaultChecked />} 
                               label="Remember me"
                                />
 
@@ -56,11 +53,11 @@ export const LoginPage = () => {
                     fullWidth
                     onClick={onClickButton} >Iniciar Sesión</Button>
 
-            <Typography style={linkStyle}>
-              <Link href="/" >
+           
+              <Link href="/login" style={linkStyle}> 
                 ¿olvidaste tu contraseña?
               </Link>
-            </Typography>
+            
           
 
         </Paper>
