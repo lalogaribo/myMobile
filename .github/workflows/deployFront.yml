@@ -18,6 +18,12 @@ jobs:
         id: code-checkout
         uses: actions/checkout@v3
 
+      - name: Set node
+        id: setup-node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Set AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -31,4 +37,4 @@ jobs:
           ls
           pwd
           npm run build
-          aws s3 sync build/ s3://mymobile-front-dev
+          aws s3 sync ./build s3://mymobile-front-dev
