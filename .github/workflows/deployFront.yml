@@ -34,7 +34,6 @@ jobs:
       - name: Build and deploy
         id: build-deploy
         run: |
-          ls
-          pwd
+          npm install
           npm run build
           aws s3 sync ./build s3://mymobile-front-dev
