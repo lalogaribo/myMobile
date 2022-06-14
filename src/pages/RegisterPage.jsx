@@ -6,12 +6,16 @@ import {
   TextField,
   Button,
   FormControl,
+  Alert,
+  Collapse,
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton";
 
 export const RegisterPage = () => {
   const paperStyle = {
@@ -27,6 +31,7 @@ export const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -37,14 +42,45 @@ export const RegisterPage = () => {
       setLoading(true);
       navigate("/");
     } catch (error) {
-      console.log(error.message);
+      setOpen(true);
       setError(error.message);
     }
+  };
+
+  const errors = {
+    "Firebase: Error (auth/email-already-in-use).":
+      "This email is already in use!",
+  };
+
+  const renderAlert = () => {
+    return (
+      <Collapse in={open}>
+        <Alert
+          severity="error"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          {errors[error]}
+        </Alert>
+      </Collapse>
+    );
   };
 
   const renderForm = () => {
     return (
       <FormControl>
+        {error && renderAlert()}
         <TextField
           id="correo"
           label="Correo"
